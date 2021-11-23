@@ -1,0 +1,12 @@
+.taskItem {
+    display: inline-block;
+}
+
+.button {
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 2px 10px;
+    text-align: center;
+
+    
+}
