@@ -1,7 +1,7 @@
 
 import {useDispatch}  from 'react-redux';
-import todo from '../store/actions/todo';
-import './AddTodo.css';
+import todo from '../../../store/actions/todo';
+import '../styles.css';
 
 
 export const DeleteButton =({value})=>{
