@@ -10,7 +10,8 @@ const todo = {
     editTodo: data =>({
         type: "EDIT_TASK",
         payload: data
-    })
+    }),
+   
 
 }
 

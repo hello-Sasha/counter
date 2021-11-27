@@ -11,18 +11,27 @@ export const Todo = ()=>{
 
   const [value, setValue] = useState('');  
   const [clickedItem, setClickedItem] = useState(null);  
+  const [itemstatus, setItemStatus] = useState(null);  
   
 
   const todoList = useSelector(selectTodoList);  
   const  dispatch = useDispatch();
-  const onSave = () =>{
+  const onSave = ( ) =>{
     clickedItem === null ? 
-    dispatch(todo.addTodo(value)) :
-    dispatch(todo.editTodo({id:clickedItem, name:value}))
+        dispatch(todo.addTodo(value)) :
+        dispatch(todo.editTodo({id:clickedItem, name:value, status: itemstatus}));
+        setValue('');
+        setClickedItem(null);
   };
   const edit =(item)=>{
-     setClickedItem(item.id);
-     setValue(item.name) ;
+    setClickedItem(item.id);
+    setValue(item.name);
+    setItemStatus(item.status);
+  };
+  const complited = (item) =>{
+
+    dispatch(todo.editTodo({id:item.id, name:item.name, status:'complited'}));
+    console.log(item);
   }
 
 return(
@@ -34,9 +43,10 @@ return(
             {
                 todoList.map( item => 
                     <li key={item.id} >
-                        {item.name} 
+                        {item.name} - {item.status} 
                         <DeleteButton value={item.id} />
                         <button className="button" onClick={()=> edit(item)}>Edit</button>
+                        <button className="button" onClick={()=> complited(item) }>Complited</button>
                         
                     </li> )
             }
