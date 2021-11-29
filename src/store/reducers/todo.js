@@ -6,7 +6,8 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-      case 'ADD_TODO': return {...state, list: [...state.list, {id: state.list.length, name:payload, status:'active'}]};
+      case 'FETCH_TODO': return {...state, list: payload };
+      case 'ADD_TODO': return {...state, list: [...state.list, { userId:1, id: state.list.length, name:payload, completed:false}]};
       case 'DELETE_TASK': return {...state, list: [...state.list.filter(
                                                                         (el)=>( el.id !== payload )                                                                  
                                                                         )]} ;

@@ -11,6 +11,10 @@ const todo = {
         type: "EDIT_TASK",
         payload: data
     }),
+    fetchTodo: data =>({
+        type: "FETCH_TODO",
+        payload: data
+    }),
    
 
 }
