@@ -17,6 +17,12 @@ function App() {
               <li>
                 <Link to="/todo">Todo</Link>
               </li>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/signup">SignUp</Link>
+              </li>
             </ul>
         </div>
         <RoutesTodo />

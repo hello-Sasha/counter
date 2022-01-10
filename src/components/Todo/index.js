@@ -5,6 +5,7 @@ import { Input } from "./components/Input";
 import { useState, useEffect } from "react";
 import "./styles.css";
 import { TodoDisplay } from "./components/TodoDisplay";
+import { SetImage } from "./components/SetImage";
 
 export const Todo = () => {
   const todoList = useSelector(selectTodoList);
@@ -16,11 +17,23 @@ export const Todo = () => {
   }, [dispatch]);
 
   const [value, setValue] = useState("");
+  const [image, setImage] = useState("");
   const [clickedItem, setClickedItem] = useState(null);
+  
 
   const onSave = () => {
+
+    const formData = new FormData();
+    if(image){ 
+      formData.append('title', value);
+      formData.append('userId', 1);
+      formData.append('completed', false);
+      formData.append('image', image);
+      //
+      //formData.append('_method', 'PUT');
+    }
     if (!clickedItem) {
-      dispatch(todo.addTodo(value));
+      dispatch(todo.addTodo(formData));
     } else {
       dispatch(todo.editTodo({ ...clickedItem, title: value }));
     }
@@ -38,7 +51,8 @@ export const Todo = () => {
 
   return (
     <div>
-      <Input value={value} setValue={setValue} />
+      <Input value={value} setValue={setValue}/>
+      <SetImage setImage={setImage}/>
       <button className="button" onClick={() => onSave()}>
         Save
       </button>

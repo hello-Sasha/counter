@@ -1,29 +1,19 @@
-import { Fragment, useState } from "react";
+import {  useState } from "react";
 import { DeleteButton } from "./DeleteButton";
+import { Pagination } from "./Pagination";
 import "../styles.css";
 
+
+const amountToShow = 35;
+
 export const TodoDisplay = ({ todoList, edit, completed }) => {
-  const todoAmount = todoList.length;
-  const amountToShow = 35;
-  const totalPages =
-    todoAmount % amountToShow === 0
-      ? todoAmount / amountToShow
-      : Math.floor(todoAmount / amountToShow) + 1;
 
   const [page, setPage] = useState(1);
-
-  const pagesArr = [...Array(totalPages).keys()].map((item) => item + 1);
-  const pages = pagesArr.map((page) => (
-    <button key={page} onClick={() => setPage(page)} className="button">
-      {page}
-    </button>
-  ));
-
   const listStart = amountToShow * (page - 1);
   const listEnd = amountToShow * page;
   return (
-    <Fragment>
-      <div className="pagination">{pages}</div>
+    <>
+      <Pagination todoAmount={todoList.length} amountToShow={amountToShow} onClick={setPage} />
 
       <ul className="taskItem">
         {todoList.slice(listStart, listEnd).map((item) => (
@@ -41,6 +31,6 @@ export const TodoDisplay = ({ todoList, edit, completed }) => {
           </li>
         ))}
       </ul>
-    </Fragment>
+    </>
   );
 };
